@@ -1,0 +1,10 @@
+{
+  "username": "your-salesforce-username",
+  "password": "your-salesforce-password",
+  "security_token": "your-security-token",
+  "domain": "login",
+  "api_version": "60.0",
+  "predicted_win_field": "Predicted_Win_Probability__c",
+  "history_years": 3,
+  "min_closed_records": 50
+}
