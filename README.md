@@ -10,11 +10,8 @@ For step-by-step execution commands, see [RUN.md](RUN.md).
 ## Quick Start
 
 1. Build the local project structure described in BUILD.md.
-
 2. Place the source files into the folders exactly as documented in BUILD.md.
-
 3. Copy `config.template.json` to `config.json` and enter your Salesforce values.
-
 4. Run the full pipeline:
 
 ```powershell
