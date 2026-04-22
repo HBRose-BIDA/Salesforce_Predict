@@ -2,6 +2,8 @@
 
 This guide is focused on pipeline execution and Salesforce-specific configuration.
 
+Prerequisite: first create the local project structure and file placement defined in BUILD.md.
+
 ## Security Deployment Modes
 
 - Default mode: produce an external scored file and do not update Salesforce.

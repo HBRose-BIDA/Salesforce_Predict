@@ -2,25 +2,30 @@
 
 Bring-your-own-Salesforce-org pipeline for opportunity win-probability scoring.
 
-Only one user-specific change is required: your local `config.json`.
+This repository is a blueprint and source package. Implementers create the local project structure using BUILD.md, place code in the documented folders, then execute with RUN.md.
 
 For implementation structure and pipeline design details, see [BUILD.md](BUILD.md).
 For step-by-step execution commands, see [RUN.md](RUN.md).
 
 ## Quick Start
 
-1. Copy `config.template.json` to `config.json` and enter your Salesforce values.
-2. Run the full pipeline:
+1. Build the local project structure described in BUILD.md.
+
+2. Place the source files into the folders exactly as documented in BUILD.md.
+
+3. Copy `config.template.json` to `config.json` and enter your Salesforce values.
+
+4. Run the full pipeline:
 
 ```powershell
 python run_pipeline.py --limit 25
 ```
 
-3. Review scored output file:
+5. Review scored output file:
 
 - `data/scored/open_opportunities_scored.csv`
 
-4. Optional advanced integration: push predictions back to Salesforce:
+6. Optional advanced integration: push predictions back to Salesforce:
 
 ```powershell
 python run_pipeline.py --push

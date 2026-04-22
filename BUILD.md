@@ -2,12 +2,15 @@
 
 ## Why This Structure
 
-This project is organized as a reproducible pipeline instead of a single script. The goal is to keep extraction, feature engineering, training, and scoring clearly separated so each stage can be improved independently.
+This project is built as a modular, reproducible pipeline instead of a single script. Each stage is isolated so extraction, features, model training, and scoring can evolve independently.
 
-## Directory Structure
+This repository is a blueprint and source package. Use this guide to create the local runtime project structure.
+
+## Target Local Project Layout
 
 ```text
-New Salesforce 2/
+Salesforce_Predict/
+├─ .gitignore
 ├─ scoring/
 │  ├─ config.py
 │  ├─ sf_client.py
@@ -18,55 +21,78 @@ New Salesforce 2/
 ├─ data/
 │  ├─ raw/
 │  └─ scored/
+├─ docs/
 ├─ models/
+├─ README.md
+├─ BUILD.md
+├─ RUN.md
 ├─ run_pipeline.py
 ├─ requirements.txt
 ├─ config.template.json
-├─ config.json
-└─ README.md
 ```
 
-## Build Flow
+## Where To Put Code
+
+Place files exactly as follows:
+
+- Pipeline package code goes under `scoring/`.
+- Orchestration entry point stays at root: `run_pipeline.py`.
+- User-facing docs stay at root: `README.md`, `BUILD.md`, `RUN.md`.
+- Config template stays at root: `config.template.json`.
+- Runtime output folders stay at root: `data/raw/`, `data/scored/`, `models/`.
+
+The runtime project should contain folder structure and source code, not local runtime artifacts.
+
+## Pipeline Build Flow
 
 1. Configuration
-- `config.template.json` provides the required shape.
-- User copies it to `config.json` and fills their own Salesforce credentials and settings.
-- No code edits are required for a new org.
 
-2. Extraction Stage
-- `scoring/extract_data.py` reads closed and open opportunities from Salesforce.
-- Outputs are written to `data/raw/` as CSV artifacts.
+- `config.template.json` defines the expected settings.
+- User copies it to `config.json` and fills org-specific values.
+- No code changes are required for a different Salesforce org.
 
-3. Feature Stage
-- `scoring/features.py` defines consistent feature transformations used by both training and inference.
-- This avoids training-serving skew.
+2. Extraction
 
-4. Training Stage
-- `scoring/train_model.py` trains a scikit-learn model and writes:
-  - `models/opportunity_win_model.joblib`
-  - `models/training_metrics.json`
-- Includes fallback behavior for very small or single-class datasets so the pipeline remains runnable.
+- `scoring/extract_data.py` pulls closed and open Opportunities from Salesforce.
+- Writes source artifacts to `data/raw/`.
 
-5. Scoring Stage
-- `scoring/score_opportunities.py` scores current open opportunities.
-- Writes ranked results to `data/scored/open_opportunities_scored.csv`.
-- Optional advanced `--push` writes probabilities back to Salesforce custom field.
+3. Feature Engineering
+
+- `scoring/features.py` applies shared transforms for training and inference.
+- This keeps feature behavior consistent across stages.
+
+4. Training
+
+- `scoring/train_model.py` builds and saves the model to `models/opportunity_win_model.joblib`.
+- Writes training diagnostics to `models/training_metrics.json`.
+- Handles low-data scenarios with fallback modes so pipeline execution does not break.
+
+5. Scoring
+
+- `scoring/score_opportunities.py` scores open opportunities.
+- Writes ranked output to `data/scored/open_opportunities_scored.csv`.
+- Optional advanced mode: `--push` writes scores back to a Salesforce Opportunity field.
 
 6. Orchestration
-- `run_pipeline.py` executes extract -> train -> score in one command.
-- Keeps execution simple for portfolio reviewers and users.
 
-## Design Choices
+- `run_pipeline.py` runs extract -> train -> score.
+- Supported parameters:
+  - `--limit <N>` limits number of open opportunities scored.
+  - `--push` enables Salesforce write-back.
 
-- Separation of concerns: each file has one clear responsibility.
-- Artifact visibility: every stage writes inspectable outputs.
-- Config-driven portability: any user can run with their own Salesforce org.
-- Safe defaults: dry-run scoring by default, explicit flag required to push updates.
-- Practical default deliverable: scored opportunity ranking in an external file.
-- Security flexibility: supports both external reporting and confidential in-CRM write-back modes.
+## Output Artifacts
 
-## How To Explain In Portfolio
+- `data/raw/closed_opportunities.csv`
+- `data/raw/open_opportunities.csv`
+- `models/opportunity_win_model.joblib`
+- `models/training_metrics.json`
+- `data/scored/open_opportunities_scored.csv`
 
-This project demonstrates end-to-end applied machine learning in a CRM workflow, with production-style organization: config-driven setup, modular pipeline stages, traceable data/model artifacts, and optional system write-back.
+## Deployment Modes
 
-In security-sensitive environments, optional write-back allows organizations to avoid distributing confidential prediction reports outside Salesforce and instead keep access governed by existing CRM permissions.
+- External analytics mode (default): produce scored files only.
+- Confidential CRM mode (optional): push scores back into Salesforce for in-CRM access control.
+
+## Portfolio Positioning
+
+This implementation demonstrates practical ML system design in a CRM context: config-driven onboarding, modular pipeline stages, traceable artifacts, and optional enterprise integration back into Salesforce.
