@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salesforce_Predict | Project Overview</title>
+    <meta
+      name="description"
+      content="Portfolio overview for Salesforce Predict: a process for scoring opportunities with optional Salesforce write-back."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f6f3ea;
+        --ink: #1f1d18;
+        --ink-soft: #4a463d;
+        --panel: #fffdf7;
+        --line: #d8d1c2;
+        --accent: #0b6e4f;
+        --accent-2: #c2551a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 10% 10%, #efe8d8 0%, transparent 40%),
+          radial-gradient(circle at 90% 5%, #f5d9c8 0%, transparent 35%),
+          linear-gradient(180deg, #fefcf7 0%, var(--bg) 100%);
+        font-family: "Space Grotesk", sans-serif;
+        line-height: 1.5;
+      }
+
+      .page {
+        width: min(1100px, 92vw);
+        margin: 2rem auto 4rem;
+      }
+
+      .hero {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: clamp(1.2rem, 3vw, 2.4rem);
+        box-shadow: 0 14px 40px rgba(31, 29, 24, 0.08);
+      }
+
+      .badge {
+        display: inline-block;
+        font-size: 0.8rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 0.28rem 0.6rem;
+        border-radius: 999px;
+        border: 1px solid #b9d9cd;
+        background: #e9f8f1;
+        color: #08513a;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        line-height: 1.1;
+      }
+
+      h1 {
+        margin-top: 0.7rem;
+        font-family: "Source Serif 4", serif;
+        font-size: clamp(2rem, 6vw, 3.8rem);
+      }
+
+      .lead {
+        margin-top: 1rem;
+        max-width: 75ch;
+        color: var(--ink-soft);
+        font-size: clamp(1rem, 1.4vw, 1.15rem);
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+        margin-top: 1.2rem;
+      }
+
+      .btn {
+        text-decoration: none;
+        padding: 0.6rem 0.95rem;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .btn.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+
+      .grid {
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 0.9rem;
+      }
+
+      .card {
+        grid-column: span 12;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 1rem 1.1rem;
+      }
+
+      .card h2 {
+        font-family: "Source Serif 4", serif;
+        font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+      }
+
+      .card p,
+      .card li {
+        color: var(--ink-soft);
+      }
+
+      .pill {
+        display: inline-block;
+        margin-top: 0.8rem;
+        background: #f8ebdf;
+        border: 1px solid #efc9ae;
+        color: #7f3c17;
+        border-radius: 999px;
+        padding: 0.22rem 0.55rem;
+        font-size: 0.82rem;
+      }
+
+      .list {
+        margin: 0.7rem 0 0;
+        padding-left: 1.05rem;
+      }
+
+      .links {
+        margin-top: 0.8rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .link-chip {
+        text-decoration: none;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.35rem 0.65rem;
+        color: var(--ink);
+        background: #fff;
+        font-size: 0.9rem;
+      }
+
+      .foot {
+        margin-top: 1rem;
+        color: #6f6a5f;
+        font-size: 0.88rem;
+      }
+
+      @media (min-width: 860px) {
+        .card.span-7 {
+          grid-column: span 7;
+        }
+
+        .card.span-5 {
+          grid-column: span 5;
+        }
+
+        .card.span-6 {
+          grid-column: span 6;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <span class="badge">Portfolio Project</span>
+        <h1>Salesforce_Predict</h1>
+        <p class="lead">
+          A practical process for identifying which sales opportunities are most likely to close.
+          This project demonstrates data extraction from Salesforce, machine-learning scoring,
+          and delivery in two modes: external report output and optional secure write-back to Salesforce.
+        </p>
+        <p class="foot">Published: hbrose-bida.github.io/Salesforce_Predict/index.html</p>
+        <div class="cta-row">
+          <a class="btn" href="https://github.com/hbrose-bida/Salesforce_Predict">View Repository</a>
+          <a class="btn primary" href="https://github.com/hbrose-bida/Salesforce_Predict/blob/main/README.md">Open Project README</a>
+          <a class="btn" href="https://github.com/hbrose-bida/Salesforce_Predict/blob/main/BUILD.md">How It Is Built</a>
+          <a class="btn" href="https://github.com/hbrose-bida/Salesforce_Predict/blob/main/RUN.md">How It Runs</a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card span-7">
+          <h2>What This Demonstrates</h2>
+          <ul class="list">
+            <li>Turning a business pain point into a repeatable analytics process.</li>
+            <li>Using historical won/lost opportunities to train a probability model.</li>
+            <li>Producing ranked output that can guide sales prioritization.</li>
+            <li>Designing for both low-friction reporting and enterprise security needs.</li>
+          </ul>
+          <span class="pill">Outcome-focused process, not a one-off script</span>
+        </article>
+
+        <article class="card span-5">
+          <h2>Project Flow</h2>
+          <ol class="list">
+            <li>Extract closed and open opportunity data.</li>
+            <li>Train model on historical patterns.</li>
+            <li>Score open opportunities.</li>
+            <li>Deliver output as file or optional Salesforce write-back.</li>
+          </ol>
+        </article>
+
+        <article class="card span-6">
+          <h2>Primary Deliverable</h2>
+          <p>
+            Ranked scored opportunities are produced as an external output file:
+            <strong>data/scored/open_opportunities_scored.csv</strong>
+          </p>
+          <p>
+            This supports review, governance, and reporting without requiring CRM customization.
+          </p>
+        </article>
+
+        <article class="card span-6">
+          <h2>Optional Advanced Mode</h2>
+          <p>
+            For organizations with strict confidentiality controls, scores can optionally be written back
+            into Salesforce so sensitive forecast data remains inside CRM permissions and access rules.
+          </p>
+          <p class="foot">Optional by design. External output remains the default mode.</p>
+        </article>
+
+        <article class="card span-12">
+          <h2>Project Files</h2>
+          <div class="links">
+            <a class="link-chip" href="https://github.com/hbrose-bida/Salesforce_Predict/blob/main/README.md">README.md</a>
+            <a class="link-chip" href="https://github.com/hbrose-bida/Salesforce_Predict/blob/main/BUILD.md">BUILD.md</a>
+            <a class="link-chip" href="https://github.com/hbrose-bida/Salesforce_Predict/blob/main/RUN.md">RUN.md</a>
+            <a class="link-chip" href="https://github.com/hbrose-bida/Salesforce_Predict/blob/main/run_pipeline.py">run_pipeline.py</a>
+            <a class="link-chip" href="https://github.com/hbrose-bida/Salesforce_Predict/blob/main/config.template.json">config.template.json</a>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
